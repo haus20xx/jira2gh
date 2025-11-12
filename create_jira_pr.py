@@ -7,6 +7,12 @@ import sys
 import argparse
 import os
 import re
+import shutil
+
+
+def command_exists(command):
+    """Check if a command exists in PATH."""
+    return shutil.which(command) is not None
 
 
 def run_command(command, cwd=None):
@@ -30,6 +36,8 @@ def run_command(command, cwd=None):
 
 
 def get_jira_url_from_acli():
+    if not command_exists("acli"):
+        return None
     """Get Jira URL from acli configuration file or auth status."""
     # Try reading from config file first (faster)
     config_path = os.path.expanduser("~/.config/acli/jira_config.yaml")
