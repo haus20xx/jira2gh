@@ -106,7 +106,11 @@ Lists active work items in current sprints for the authenticated user.
 
 ### 3. create_jira_pr.py
 
-Create a GitHub pull request from a Jira ticket (used by workflow script, but can be run standalone).
+Create a GitHub pull request from a Jira ticket (used by workflow script, but can be run standalone). 
+
+**Requires:**
+`gh` that has been authed
+`acli` (Optional) for autodetection of Jira URLs
 
 **Usage:**
 
@@ -121,7 +125,7 @@ Create a GitHub pull request from a Jira ticket (used by workflow script, but ca
 **Options:**
 
 - `-h, --help` - Show help message
-- `--url URL` - Jira base URL (default: auto-detect from acli)
+- `--url URL` - Jira base URL (default: auto-detect from acli with env var and user input fallback if acli is unavailable)
 - `--dir DIR` - Repository directory (default: current directory)
 - `--base BRANCH` - Base branch for PR (default: auto-detect main/master)
 
