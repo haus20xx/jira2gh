@@ -167,7 +167,7 @@ You can customize the PR title and description by creating a `.pr_template` file
 - [ ] Manual testing completed
 ```
 
-If no template is found, the default format will be used: `[JIRA-ID]: ` with a simple link to the ticket.
+If no template is found, the default format will be used: `[JIRA-ID]: {BRANCH_SUFFIX}` with a simple link to the ticket.
 
 ## Setup
 
@@ -186,7 +186,7 @@ export JIRA_BASE_URL=https://jira.company.com
 
 **Install acli:**
 ```bash
-# Follow instructions at https://bobswift.atlassian.net/wiki/spaces/ACLI/overview
+# Follow instructions at [https://bobswift.atlassian.net/wiki/spaces/ACLI/overview](https://developer.atlassian.com/cloud/acli/guides/introduction/)
 ```
 
 **Install gh:**
