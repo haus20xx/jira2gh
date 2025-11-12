@@ -14,7 +14,6 @@ TBD
 
 ## Scripts
 
-
 ### 1. jira_pr_workflow.py (Recommended)
 
 **Complete workflow**: Select a Jira ticket from your active sprints and create a PR for it.
@@ -22,11 +21,13 @@ TBD
 This script orchestrates the other two scripts to provide a seamless workflow.
 
 **Usage:**
+
 ```bash
 ./jira_pr_workflow.py [OPTIONS]
 ```
 
 **Options:**
+
 - `-h, --help` - Show help message
 - `-b BOARD_ID, --board BOARD_ID` - Query specific board only
 - `--url URL` - Jira base URL (default: auto-detect from acli)
@@ -34,6 +35,7 @@ This script orchestrates the other two scripts to provide a seamless workflow.
 - `--base BRANCH` - Base branch for PR (default: auto-detect main/master)
 
 **Examples:**
+
 ```bash
 # Basic usage (will fetch all your active sprint items)
 ./jira_pr_workflow.py
@@ -53,6 +55,7 @@ export JIRA_BASE_URL=https://jira.company.com
 ```
 
 **How it works:**
+
 1. Prompts for repository directory (or uses --dir argument)
 2. Auto-detects current git branch
 3. Auto-detects Jira URL from acli (or uses provided URL)
@@ -70,17 +73,20 @@ export JIRA_BASE_URL=https://jira.company.com
 Lists active work items in current sprints for the authenticated user.
 
 **Usage:**
+
 ```bash
 ./list_sprint_items.py [OPTIONS]
 ```
 
 **Options:**
+
 - `-h, --help` - Show help message
 - `-q, --quiet` - Only show final summary
 - `-j, --json` - Output as JSON
 - `-b BOARD_ID, --board BOARD_ID` - Query specific board only
 
 **Examples:**
+
 ```bash
 # Verbose output
 ./list_sprint_items.py
@@ -103,20 +109,24 @@ Lists active work items in current sprints for the authenticated user.
 Create a GitHub pull request from a Jira ticket (used by workflow script, but can be run standalone).
 
 **Usage:**
+
 ```bash
 ./create_jira_pr.py JIRA_ID [OPTIONS]
 ```
 
 **Arguments:**
+
 - `JIRA_ID` - Jira ticket ID (e.g., PROJ-123)
 
 **Options:**
+
 - `-h, --help` - Show help message
 - `--url URL` - Jira base URL (default: auto-detect from acli)
 - `--dir DIR` - Repository directory (default: current directory)
 - `--base BRANCH` - Base branch for PR (default: auto-detect main/master)
 
 **Examples:**
+
 ```bash
 # Basic usage (auto-detects URL from acli, prompts for directory)
 ./create_jira_pr.py PROJ-123
@@ -133,7 +143,8 @@ export JIRA_BASE_URL=https://jira.company.com
 ```
 
 **How it works:**
-1. Auto-detects Jira URL from acli (if not provided)
+
+1. Auto-detects Jira URL from acli (if not provided and acli is available)
 2. Searches for branches matching the Jira ID
 3. If multiple matches, prompts you to select one
 4. If no matches, offers to use current branch
@@ -149,25 +160,31 @@ export JIRA_BASE_URL=https://jira.company.com
 You can customize the PR title and description by creating a `.pr_template` file in your repository.
 
 **Template Variables:**
+
 - `{JIRA_ID}` - The Jira ticket ID (e.g., PROJ-123)
 - `{JIRA_URL}` - Full URL to the Jira ticket
 - `{BRANCH_SUFFIX}` - Branch name with Jira ID removed (e.g., `feature/PROJ-123-add-auth` → `add-auth`)
 
 **Format:**
+
 - First line: PR title template
 - Remaining lines: PR body template
 
 **Example `.pr_template`:**
+
 ```markdown
 [{JIRA_ID}] {BRANCH_SUFFIX}
 
 ## Jira Ticket
+
 {JIRA_URL}
 
 ## Changes
+
 -
 
 ## Testing
+
 - [ ] Unit tests pass
 - [ ] Manual testing completed
 ```
@@ -177,11 +194,13 @@ If no template is found, the default format will be used: `[JIRA-ID]: {BRANCH_SU
 ## Setup
 
 Make scripts executable:
+
 ```bash
 chmod +x jira_pr_workflow.py list_sprint_items.py create_jira_pr.py
 ```
 
 Set environment variable for Jira URL (optional):
+
 ```bash
 # Add to ~/.bashrc or ~/.zshrc
 export JIRA_BASE_URL=https://jira.company.com
@@ -190,11 +209,13 @@ export JIRA_BASE_URL=https://jira.company.com
 ## Installation
 
 **Install acli:**
+
 ```bash
 # Follow instructions at [https://bobswift.atlassian.net/wiki/spaces/ACLI/overview](https://developer.atlassian.com/cloud/acli/guides/introduction/)
 ```
 
 **Install gh:**
+
 ```bash
 # macOS
 brew install gh
