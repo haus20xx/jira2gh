@@ -30,7 +30,29 @@ def run_command(command, cwd=None):
 
 
 def get_jira_url_from_acli():
-    """Get Jira URL from acli authentication status."""
+    """Get Jira URL from acli configuration file or auth status."""
+    # Try reading from config file first (faster)
+    config_path = os.path.expanduser("~/.config/acli/jira_config.yaml")
+
+    if os.path.isfile(config_path):
+        try:
+            with open(config_path, "r", encoding="utf-8") as f:
+                content = f.read()
+
+            # Parse the YAML-like structure (simple parsing for this specific format)
+            # Find the site from the first profile (or current profile)
+            for line in content.split("\n"):
+                line = line.strip()
+                if line.startswith("- site:") or line.startswith("site:"):
+                    # Extract site value
+                    site = line.split(":", 1)[1].strip()
+                    if site:
+                        return f"https://{site}"
+        except Exception:
+            # If config file reading fails, fall back to acli command
+            pass
+
+    # Fallback: use acli command
     output = run_command("acli jira auth status")
     if not output:
         return None
