@@ -10,8 +10,7 @@ Python scripts for working with Jira and GitHub.
 
 ## Demo
 
-https://github.com/user-attachments/assets/b8558ef0-cb5b-4956-bb08-eddee1c3c6f8
-
+TBD
 
 ## Scripts
 
