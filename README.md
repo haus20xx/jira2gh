@@ -8,7 +8,13 @@ Python scripts for working with Jira and GitHub.
 - **gh** (GitHub CLI) - for GitHub operations
 - Python 3.6 or higher
 
+## Demo
+
+https://github.com/user-attachments/assets/b8558ef0-cb5b-4956-bb08-eddee1c3c6f8
+
+
 ## Scripts
+
 
 ### 1. jira_pr_workflow.py (Recommended)
 
